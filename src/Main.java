@@ -7,10 +7,10 @@ public class Main {
 		
 		while(true) {
 			Scanner sc = new Scanner(System.in);
-
+			System.out.println("==미로 만들기=================");
+			System.out.println("미로 행,열 사이즈를 입력해주세요 : ");
 			int a = sc.nextInt();
 			int b = sc.nextInt();
-
 			int[][] miro = new int[a][b];
 
 			for (int i=0 ; i<a ; i++) {
@@ -21,14 +21,18 @@ public class Main {
 					} else {
 						miro[i][j] = 0;
 					}
-					System.out.println(i+","+j+"의 값은 : "+miro[i][j]);
+					System.out.print(miro[i][j]);
 				}
+				System.out.println();
 			}
-			if(a==0){
+			if(a==0 && b==0){
+				System.out.println("미로 만들기를 종료합니다.");
 				break;
 			}
+			Miro n = new Miro(a, b, miro);
+			//n.path();
 		}
-
+		/*
 		int[][] input = { { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 				{ 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 },
 				{ 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1 },
@@ -42,6 +46,8 @@ public class Main {
 				{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
 		Miro m = new Miro(9, 9, input);
 		// m.path();
+		 * 
+		 */
 	}
 }
 
@@ -105,7 +111,7 @@ class Miro {
 					return;
 				}
 
-				// 미로 매열에서 0이며 이미 간적이 없는(mark[g][h]가 0)곳으로 새 좌표를 이동
+				// 미로 배열에서 0이며 이미 간적이 없는(mark[g][h]가 0)곳으로 새 좌표를 이동
 				if (maze[g][h] == 0 && mark[g][h] == 0) {
 					mark[g][h] = 1; // 간곳이라고 표시
 					// 스택에 현재 위치 및 이동한 방향을 저장
